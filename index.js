@@ -14,8 +14,9 @@ const { Product, Users } = require("./model/product")
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 //const stripe = require('stripe')("sk_test_51PkhhFP5IdnNo5MZiNTUzdVPcyHlUj7xbgWg194FthWdRyK4CTh6xdwaBbe3O4p7ulH7nojYyT0RBBuNGe0AvpMQ004LF35ZDj")
-// const URL = "http://localhost:5173"
-const URL = "https://click-shop-client-seven.vercel.app"
+const URL = "http://localhost:5173"
+// const URL = "https://click-shop-client-seven.vercel.app"
+
 const DEPLOY_URL = 'https://clickshop-server.onrender.com'
 // const DEPLOY_URL = 'http://localhost:4000'
 
@@ -322,35 +323,48 @@ const giveRefId = () => {
 }
 
 
-const server = app.listen(port, () => console.log("Server Connectrd successfully", port))
+ app.listen(port, () => console.log("Server Connectrd successfully", port))
 
 
 
-const io = socketio(server, {
-    cors: {
-        origin: URL,
-        methods: ["GET", "POST"]
-    }
-});
+// For implement message
 
-io.on("connection", (socket) => {
-    console.log("conneetettt");
+app.post("/message", async (req, res) => {
+    const response = messageHandlers[req.body.message] || "I don't understand";
+    res.json({ response });
+}
+)
+app.post("/messagesend", async (req, res) => {
+    const response = "i applogize for the inconvenience, becasue of the high traffic  dont worry we are working on it give us 2-3 business days we will resolve it, your refence id is " + giveRefId() + ". thank you for your patience";
+    res.json({ response });
+}
+)
+
+// const io = socketio(server, {
+//     cors: {
+//         origin: URL,
+//         methods: ["GET", "POST"]
+//     }
+// });
+
+// io.on("connection", (socket) => {
+//     console.log("conneetettt");
 
 
 
-    socket.on("message", (message) => {
-        const response = messageHandlers[message] || "I don't understand";
-        socket.emit("response", response);
-    })
-    socket.on("sendmessage", (message) => {
+//     socket.on("message", (message) => {
+//         const response = messageHandlers[message] || "I don't understand";
+//         socket.emit("response", response);
+//     })
+//     socket.on("sendmessage", (message) => {
 
-        socket.emit("response", `i applogize for the inconvenience, becasue of the high traffic  dont worry we are working on it give us 2-3 business days we will resolve it, your refence id is ${giveRefId()}. thank you for your patience`)
-    })
+//         socket.emit("response", `i applogize for the inconvenience, becasue of the high traffic  dont worry we are working on it give us 2-3 business days we will resolve it, your refence id is ${giveRefId()}. thank you for your patience`)
+//     })
 
-    socket.on("disconnect", () => {
-        console.log("Client disconnected")
-    })
-})
+//     socket.on("disconnect", () => {
+//         console.log("Client disconnected")
+//     })
+// })
 
 
 // Catch unhandled promise rejections
