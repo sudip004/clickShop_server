@@ -18,8 +18,8 @@ const NodeCache = require("node-cache"); // Import NodeCache
 // Initialize cache
 const cache = new NodeCache({ stdTTL: 60 * 60 }); // Cache TTL is set to 1 hour
 
-// const URL = "https://click-shop-client-lilac.vercel.app";
-const URL = "http://localhost:5173";
+const URL = "https://click-shop-client-lilac.vercel.app";
+
 
 // Cloudinary configuration
 cloudinary.config({
@@ -29,14 +29,11 @@ cloudinary.config({
 });
 
 app.use(express.json());
-const corsOptions = {
-    origin: ["http://localhost:5173", "https://click-shop-client-lilac.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"], // Include all the HTTP methods you use
-    credentials: true, // Allows cookies to be sent in cross-origin requests
-    allowedHeaders: ["Content-Type", "Authorization"], // Include any custom headers you use
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: [URL , "http://localhost:3000","http://localhost:5173"],
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 
 
 // Database connection
