@@ -18,8 +18,8 @@ const NodeCache = require("node-cache"); // Import NodeCache
 // Initialize cache
 const cache = new NodeCache({ stdTTL: 60 * 60 }); // Cache TTL is set to 1 hour
 
-// const URL = "https://click-shop-client-seven.vercel.app";
-const URL = "http://localhost:5173";
+const URL = "https://click-shop-client-seven.vercel.app";
+// const URL = "http://localhost:5173";
 
 // Cloudinary configuration
 cloudinary.config({
@@ -238,13 +238,15 @@ const giveRefId = () => {
 };
 
 app.post("/message", async (req, res) => {
-    const response = messageHandlers[req.body.message] || "I am sorry, I don't understand.";
-    const refId = giveRefId();
-    res.json({
-        response,
-        refId
-    });
-});
+    const response = messageHandlers[req.body.message] || "I don't understand";
+    res.json({ response });
+}
+)
+app.post("/messagesend", async (req, res) => {
+    const response = "i applogize for the inconvenience, becasue of the high traffic  dont worry we are working on it give us 2-3 business days we will resolve it, your refence id is " + giveRefId() + ". thank you for your patience";
+    res.json({ response });
+}
+)
 
 const server = http.createServer(app);
 const io = socketio(server, {
