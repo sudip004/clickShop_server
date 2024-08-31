@@ -30,7 +30,7 @@ cloudinary.config({
 
 app.use(express.json());
 const corsOptions = {
-    origin: [URL, "http://localhost:3000"],
+    origin: [URL, "http://localhost:3000","http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"], // Include all the HTTP methods you use
     credentials: true, // Allows cookies to be sent in cross-origin requests
     allowedHeaders: ["Content-Type", "Authorization"], // Include any custom headers you use
