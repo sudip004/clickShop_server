@@ -29,11 +29,15 @@ cloudinary.config({
 });
 
 app.use(express.json());
-app.use(cors({
-    origin: [URL , "http://localhost:3000",],
-    methods: ["GET", "POST"],
-    credentials: true
-}));
+const corsOptions = {
+    origin: [URL, "http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"], // Include all the HTTP methods you use
+    credentials: true, // Allows cookies to be sent in cross-origin requests
+    allowedHeaders: ["Content-Type", "Authorization"], // Include any custom headers you use
+};
+
+app.use(cors(corsOptions));
+
 
 // Database connection
 mongoose.connect("mongodb+srv://sudipbasakk1234:Du4lBcw8ksDYmQoB@cluster0.doylg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
