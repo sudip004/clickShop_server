@@ -18,7 +18,7 @@ const NodeCache = require("node-cache"); // Import NodeCache
 // Initialize cache
 const cache = new NodeCache({ stdTTL: 60 * 60 }); // Cache TTL is set to 1 hour
 
-const URL = "";
+const URL = "https://click-shop-client-lilac.vercel.app";
 // const URL = "http://localhost:5173";
 
 // Cloudinary configuration
