@@ -30,7 +30,7 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors({
-    origin: [URL, "http://localhost:3000"],
+    origin: [URL , "http://localhost:3000"],
     methods: ["GET", "POST"],
     credentials: true
 }));
