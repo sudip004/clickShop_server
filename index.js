@@ -30,7 +30,7 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors({
-    origin: [URL , "http://localhost:3000","https://click-shop-client-seven.vercel.app"],
+    origin: [URL , "http://localhost:3000","https://click-shop-client-seven.vercel.app","https://click-shop-server.vercel.app/message"],
     methods: ["GET", "POST"],
     credentials: true
 }));
