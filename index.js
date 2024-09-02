@@ -35,6 +35,9 @@ app.use(cors({
     credentials: true
 }));
 
+app.options('*', cors());
+
+
 
 // Database connection
 mongoose.connect("mongodb+srv://sudipbasakk1234:Du4lBcw8ksDYmQoB@cluster0.doylg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
